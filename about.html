@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Nikheel C K</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-section {
+            padding: 8rem 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 4rem;
+            align-items: start;
+            padding: 0 2rem;
+        }
+        
+        .about-content {
+            animation: fadeIn 1s ease;
+        }
+
+        .text-content {
+            margin-bottom: 2rem;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            animation: slideIn 1s ease;
+        }
+
+        /* Make the last card centered if it's alone in the last row */
+        .about-stats > div:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            width: 75%;
+            margin: 0 auto;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--card-shadow);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Navigation Styles */
+        .page-navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button .button-text {
+            position: absolute;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-button:hover .button-text {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-button i {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.2rem;
+        }
+
+        .nav-button:hover i {
+            transform: scale(1.1);
+        }
+
+        .nav-button.prev:hover i {
+            transform: scale(1.1) translateX(-3px);
+        }
+
+        .nav-button.next:hover i {
+            transform: scale(1.1) translateX(3px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+            .about-grid {
+                gap: 3rem;
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+            .about-stats {
+                margin-top: 2rem;
+            }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 20px var(--card-shadow);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 8rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        @media (max-width: 1200px) {
+            .navbar .container {
+                padding: 0 4rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .navbar .container {
+                padding: 0 2rem;
+            }
+            .nav-links {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                padding: 0 1.5rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">NCK</div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="achievements.html">Achievements</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="about-section">
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="text-content">
+                        <h1 class="animate-text">About Me</h1>
+                        <p class="animate-text-delay">
+                            Hello! I'm Nikheel C Khadakabhavi, a passionate AI ML student at MIT Academy of Engineering. 
+                            I'm currently pursuing my FY B.Tech degree, where I'm diving deep into the fascinating 
+                            world of Artificial Intelligence and Machine Learning.
+                        </p>
+                        <p class="animate-text-delay-2">
+                            My academic journey has been marked by consistent excellence. I completed my 10th grade 
+                            with an outstanding score of 99.52%, demonstrating my dedication to academic excellence. 
+                            Following that, I achieved 82.3% in my 12th grade, which paved the way for my current 
+                            pursuit in engineering.
+                        </p>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">99.52%</div>
+                        <div class="stat-label">10th Grade Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">82.3%</div>
+                        <div class="stat-label">12th Grade Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8.9</div>
+                        <div class="stat-label">First Sem CGPA</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">AI/ML</div>
+                        <div class="stat-label">Specialization</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-navigation">
+            <button class="nav-button prev" onclick="navigatePage('prev')">
+                <span class="button-text">To Home</span>
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <button class="nav-button next" onclick="navigatePage('next')">
+                <span class="button-text">To Skills</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

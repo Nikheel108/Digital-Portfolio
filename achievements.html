@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - Nikheel C K</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .achievements-section {
+            padding: 8rem 0;
+        }
+
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+            text-align: left;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .achievement-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px var(--card-shadow);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease forwards;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            opacity: 0.05;
+            transition: opacity 0.4s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--card-shadow);
+        }
+
+        .achievement-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .achievement-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .achievement-description {
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            flex-grow: 1;
+        }
+
+        .achievement-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .achievement-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--secondary-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Tablet View */
+        @media (max-width: 1024px) {
+            .section-header {
+                padding: 0 1.5rem;
+            }
+            
+            .section-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .achievements-grid {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            .section-header {
+                padding: 0 1rem;
+                text-align: center;
+            }
+
+            .section-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-header p {
+                font-size: 0.95rem;
+                margin: 0 auto;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Small Mobile View */
+        @media (max-width: 480px) {
+            .section-header {
+                padding: 0 0.8rem;
+            }
+
+            .section-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .achievements-grid {
+                padding: 0 0.8rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 20px var(--card-shadow);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 8rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        @media (max-width: 1200px) {
+            .navbar .container {
+                padding: 0 4rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .navbar .container {
+                padding: 0 2rem;
+            }
+            .nav-links {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                padding: 0 1.5rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Navigation Styles */
+        .page-navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button .button-text {
+            position: absolute;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-button:hover .button-text {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-button i {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.2rem;
+        }
+
+        .nav-button:hover i {
+            transform: scale(1.1);
+        }
+
+        .nav-button.prev:hover i {
+            transform: scale(1.1) translateX(-3px);
+        }
+
+        .nav-button.next:hover i {
+            transform: scale(1.1) translateX(3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">NCK</div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="achievements.html" class="active">Achievements</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="achievements-section">
+            <div class="section-header">
+                <h1 class="animate-text">Achievements</h1>
+                <p class="animate-text-delay">
+                    Here are some of my notable achievements that reflect my dedication and commitment to excellence.
+                </p>
+            </div>
+
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="achievement-title">Academic Excellence in KSEEB Board</h3>
+                    <p class="achievement-description">
+                        Achieved remarkable success in 10th grade by becoming the school topper and securing the 4th rank 
+                        in Karnataka state under the KSEEB board. This outstanding achievement was recognized by the 
+                        government, who honored me with a laptop as a reward for academic excellence.
+                    </p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">School Topper</span>
+                        <span class="achievement-tag">4th Rank in State</span>
+                        <span class="achievement-tag">Government Recognition</span>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3 class="achievement-title">Cultural Activity Achievement</h3>
+                    <p class="achievement-description">
+                        Participated in a meaningful cultural activity that brought attention to the challenges faced by 
+                        students in government schools. The performance was well-received and advanced to the district level, 
+                        demonstrating both artistic ability and social consciousness.
+                    </p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">District Level</span>
+                        <span class="achievement-tag">Social Awareness</span>
+                        <span class="achievement-tag">Cultural Performance</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-navigation">
+            <button class="nav-button prev" onclick="navigatePage('prev')">
+                <span class="button-text">To Education</span>
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <button class="nav-button next" onclick="navigatePage('next')">
+                <span class="button-text">To Contact</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
